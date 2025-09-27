@@ -1,0 +1,65 @@
+{
+  "metadata": {
+    "timestamp": "2025-09-27T09:11:42",
+    "description": "Garden optimization output using Choco Solver",
+    "version": "1.0",
+    "application": "Spring Boot Garden Optimization API"
+  },
+  "request": {
+    "gardenWidth": 10,
+    "gardenLength": 8,
+    "crops": ["tomatoes", "carrots", "lettuce", "basil", "peppers", "cucumber", "fennel"]
+  },
+  "optimization_result": {
+    "layout": [
+      ["T", ".", ".", "F", ".", "P", ".", ".", ".", "C"],
+      [".", ".", ".", ".", ".", ".", ".", ".", ".", "."],
+      [".", ".", ".", ".", "B", "L", ".", ".", ".", "."],
+      [".", ".", ".", ".", ".", ".", ".", ".", ".", "."],
+      [".", ".", ".", ".", ".", "C", ".", ".", ".", "."],
+      [".", ".", ".", ".", ".", ".", ".", ".", ".", "."],
+      [".", ".", ".", ".", ".", ".", ".", ".", ".", "."],
+      [".", ".", ".", ".", ".", ".", ".", ".", ".", "."]
+    ],
+    "plantingInstructions": {
+      "tomatoes": [{"x": 0, "y": 0}],
+      "peppers": [{"x": 5, "y": 0}],
+      "basil": [{"x": 4, "y": 2}],
+      "cucumber": [{"x": 5, "y": 4}],
+      "fennel": [{"x": 3, "y": 0}],
+      "carrots": [{"x": 9, "y": 0}],
+      "lettuce": [{"x": 5, "y": 2}]
+    },
+    "utilizationRate": 8.75,
+    "totalGardenArea": 80,
+    "usedSquares": 7,
+    "emptySquares": 73
+  },
+  "constraints_applied": {
+    "boundary_constraints": "All crops placed within garden boundaries",
+    "spacing_requirements": "Minimum spacing maintained between crops",
+    "companion_planting": "Beneficial plant combinations considered",
+    "antagonistic_separation": "Incompatible plants kept apart"
+  },
+  "legend": {
+    "T": "Tomatoes",
+    "C": "Carrots",
+    "L": "Lettuce",
+    "B": "Basil",
+    "P": "Peppers",
+    "C": "Cucumber",
+    "F": "Fennel",
+    ".": "Empty space"
+  },
+  "optimization_notes": {
+    "companion_relationships": {
+      "tomatoes_basil": "Basil placed near tomatoes for pest control",
+      "carrots_lettuce": "Carrots and lettuce can grow well together"
+    },
+    "antagonistic_relationships": {
+      "tomatoes_fennel": "Fennel kept at distance from tomatoes to avoid growth inhibition"
+    },
+    "spacing_analysis": "Each crop maintains required minimum distance from others",
+    "utilization_improvement": "Low utilization suggests larger crops or more intensive planting could be beneficial"
+  }
+}
