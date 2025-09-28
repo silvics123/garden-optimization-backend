@@ -7,19 +7,23 @@ A Spring Boot backend service for optimizing garden layouts using constraint pro
 - **Garden Layout Optimization**: Uses Choco Solver for constraint-based garden optimization
 - **Simple Garden Planning**: Basic garden layout generation with target utilization
 - **Crop Management**: Database-driven crop management with companion and antagonist relationships
-- **REST API**: RESTful endpoints for garden planning and crop management
+- **User Registration & Authentication**: Secure user accounts with encrypted passwords
+- **REST API**: RESTful endpoints for garden planning, crop management, and user registration
 - **Database Integration**: H2 in-memory database for development, PostgreSQL support for production
+- **Security**: Spring Security with BCrypt password encryption and input validation
 
 ## Technology Stack
 
 - **Java 17**
 - **Spring Boot 3.2.0**
 - **Spring Data JPA**
+- **Spring Security** (Authentication & Authorization)
 - **Choco Solver 4.10.14** (Constraint Programming)
 - **H2 Database** (Development)
 - **PostgreSQL** (Production)
 - **Maven** (Build Tool)
 - **SLF4J** (Logging)
+- **BCrypt** (Password Encryption)
 
 ## API Endpoints
 
@@ -28,7 +32,10 @@ A Spring Boot backend service for optimizing garden layouts using constraint pro
 - `POST /api/garden/simple` - Create simple garden layout with target utilization
 - `GET /api/garden/crops` - Get all available crops
 
-### Request Format
+### User Management
+- `POST /api/users/register` - Register a new user account
+
+### Garden Planning Request Format
 ```json
 {
   "gardenWidth": 8,
@@ -37,7 +44,16 @@ A Spring Boot backend service for optimizing garden layouts using constraint pro
 }
 ```
 
-### Response Format
+### User Registration Request Format
+```json
+{
+  "userName": "johndoe",
+  "password": "securepassword123",
+  "email": "john@example.com"
+}
+```
+
+### Garden Planning Response Format
 ```json
 {
   "layout": [
@@ -51,6 +67,17 @@ A Spring Boot backend service for optimizing garden layouts using constraint pro
     "lettuce": [{"x": 4, "y": 0}]
   },
   "utilizationRate": 62.5
+}
+```
+
+### User Registration Response Format
+```json
+{
+  "id": 1,
+  "userName": "johndoe",
+  "email": "john@example.com",
+  "createdAt": "2025-09-28T04:47:12.400",
+  "updatedAt": "2025-09-28T04:47:12.400"
 }
 ```
 
@@ -99,22 +126,28 @@ src/
 │   ├── java/com/silvics/garden/
 │   │   ├── Application.java
 │   │   ├── config/
-│   │   │   └── GardenConfiguration.java
+│   │   │   ├── GardenConfiguration.java
+│   │   │   └── SecurityConfiguration.java
 │   │   ├── controller/
 │   │   │   ├── GardenPlanningController.java
-│   │   │   └── HelloController.java
+│   │   │   ├── HelloController.java
+│   │   │   └── UserController.java
 │   │   ├── dto/
-│   │   │   └── GardenOptimizationRequest.java
+│   │   │   ├── GardenOptimizationRequest.java
+│   │   │   └── UserRegistrationRequest.java
 │   │   ├── model/
 │   │   │   ├── Crop.java
 │   │   │   ├── CropAntagonist.java
 │   │   │   ├── CropCompanion.java
 │   │   │   ├── Garden.java
-│   │   │   └── PlantingPlan.java
+│   │   │   ├── PlantingPlan.java
+│   │   │   └── User.java
 │   │   ├── repository/
-│   │   │   └── CropRepository.java
+│   │   │   ├── CropRepository.java
+│   │   │   └── UserRepository.java
 │   │   └── service/
-│   │       └── GardenOptimizerService.java
+│   │       ├── GardenOptimizerService.java
+│   │       └── UserService.java
 │   └── resources/
 │       ├── application.properties
 │       └── db/migration/
