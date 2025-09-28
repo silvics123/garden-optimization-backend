@@ -5,6 +5,7 @@
 DROP TABLE IF EXISTS crop_companions;
 DROP TABLE IF EXISTS crop_antagonists;
 DROP TABLE IF EXISTS crops;
+DROP TABLE IF EXISTS users;
 
 -- Create crops table
 CREATE TABLE crops (
@@ -50,7 +51,22 @@ CREATE INDEX idx_crop_companions_companion_id ON crop_companions(companion_crop_
 CREATE INDEX idx_crop_antagonists_crop_id ON crop_antagonists(crop_id);
 CREATE INDEX idx_crop_antagonists_antagonist_id ON crop_antagonists(antagonist_crop_id);
 
+-- Create users table
+CREATE TABLE users (
+    id BIGINT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Create indexes for users table
+CREATE INDEX idx_users_username ON users(username);
+CREATE INDEX idx_users_email ON users(email);
+
 -- Create sequences for ID generation (PostgreSQL style, H2 compatible)
 CREATE SEQUENCE IF NOT EXISTS crops_seq START WITH 1 INCREMENT BY 1;
 CREATE SEQUENCE IF NOT EXISTS crop_companions_seq START WITH 1 INCREMENT BY 1;
 CREATE SEQUENCE IF NOT EXISTS crop_antagonists_seq START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE IF NOT EXISTS users_seq START WITH 1 INCREMENT BY 1;

@@ -16,7 +16,10 @@
       "Bash(curl -X POST http://localhost:8085/api/garden/simple -H \"Content-Type: application/json\" -d \"{\"\"gardenWidth\"\": 6, \"\"gardenLength\"\": 4, \"\"crops\"\": [\"\"tomatoes\"\", \"\"carrots\"\", \"\"lettuce\"\"]}\")",
       "Bash(curl:*)",
       "Bash(git init:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git config:*)",
+      "Bash(gh:*)"
     ],
     "deny": [],
     "ask": []
